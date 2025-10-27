@@ -10,7 +10,24 @@ class MyApp(arcade.Window):
     def __init__(self):
         super().__init__(SCREEN_WIDTH,SCREEN_HEIGHT,SCREEN_TITLE)
         self.state = 0
-        texture1 = arcade.load_texture(":resources:images/")
+        texture1 = arcade.load_texture(":resources:images/tiles/grassMid.png")
+        texture2 = arcade.load_texture(":resources:images/tiles/rock.png")
+        self.ground_list = arcade.SpriteList()
+        k=0
+        while k <= 18:
+            self.ground_Sprite = arcade.Sprite(texture1)
+            self.ground_Sprite.center_x = 64+64*k
+            self.ground_Sprite.center_y = 64
+            self.ground_list.append(self.ground_Sprite)
+            k = k + 2
+
+        coordinate_list = [[256, 96], [512, 96+64] ,[768, 96+2*64]]
+        for coordinate in coordinate_list:
+            # Add a crate on the ground
+            wall = arcade.Sprite(texture2)
+            wall.position = coordinate
+            self.ground_list.append(wall)
+        
 
     def setup(self):
         self.state = 0
@@ -54,7 +71,7 @@ class MyApp(arcade.Window):
             self.start_text.draw()
             self.exit_text.draw()
         elif self.state == 1:
-            pass
+            self.ground_list.draw()
 
 
 game = MyApp()
