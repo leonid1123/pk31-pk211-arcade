@@ -15,6 +15,7 @@ class MyGame(arcade.Window):
         self.player_texture = None
         self.player_sprite = None
         self.player_sprite_lst = None
+        self.physics_engine = None
 
     def setup(self):
         arcade.set_background_color(arcade.color.BATTLESHIP_GREY)
@@ -55,12 +56,37 @@ class MyGame(arcade.Window):
         self.player_sprite.position = [100,200]
         self.player_sprite_lst = arcade.SpriteList()
         self.player_sprite_lst.append(self.player_sprite)
+        self.physics_engine = arcade.PhysicsEnginePlatformer(
+                                                            self.player_sprite, 
+                                                            walls=self.ground_sprite_list, 
+                                                            gravity_constant=1
+                                                            )
 
     def on_key_press(self, key, modifiers):
-        if key == arcade.key.ENTER:
-            self.state = 1
-        elif key == arcade.key.ESCAPE and self.state == 0:
-            arcade.close_window()
+        if self.state == 0:
+            if key == arcade.key.ENTER:
+                self.state = 1
+            elif key == arcade.key.ESCAPE and self.state == 0:
+                arcade.close_window()
+        elif self.state == 1:
+            if key == arcade.key.W or key == arcade.key.UP:
+                if self.physics_engine.can_jump():
+                    self.player_sprite.change_y = 13
+            if key == arcade.key.A or key == arcade.key.LEFT:
+                self.player_sprite.change_x = -5
+            if key == arcade.key.D or key == arcade.key.RIGHT:
+                self.player_sprite.change_x = 5
+            if key == arcade.key.ESCAPE:
+                self.setup()
+
+    def on_key_release(self, key, modifiers):
+        if self.state == 1:
+            if key in [arcade.key.A, arcade.key.D,arcade.key.LEFT,arcade.key.RIGHT]:
+                self.player_sprite.change_x = 0
+
+
+    def on_update(self, delta_time):
+        self.physics_engine.update()
 
     def on_draw(self):
         self.clear()
