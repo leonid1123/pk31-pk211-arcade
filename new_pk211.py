@@ -12,6 +12,16 @@ class MyApp(arcade.Window):
         super().__init__(SCREEN_WIDTH,SCREEN_HEIGHT,SCREEN_TITLE)
         self.state = 0
         self.key_counter = 0
+        self.player_sprite = None
+        self.player_lst = None
+        self.ground_list = None
+        self.ground_Sprite = None
+        self.keys_lst = None
+
+        
+        
+
+    def setup(self):
         texture1 = arcade.load_texture(":resources:images/tiles/grassMid.png")
         texture2 = arcade.load_texture(":resources:images/tiles/rock.png")
         texture3 = arcade.load_texture(":resources:images/alien/alienBlue_front.png")
@@ -44,9 +54,7 @@ class MyApp(arcade.Window):
             key = arcade.Sprite(texture4, scale=0.5)
             key.position = coords
             self.keys_lst.append(key)
-        
-
-    def setup(self):
+            
         self.state = 0
         self.key_counter = 0
         arcade.set_background_color(arcade.color.ELECTRIC_BLUE)

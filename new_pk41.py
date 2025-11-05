@@ -1,7 +1,7 @@
 import arcade
 
-SCREEN_WIDTH = 1280
-SCREEN_HEIGHT = 720
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 800
 
 class MyGame(arcade.Window):
     def __init__(self):
@@ -30,35 +30,31 @@ class MyGame(arcade.Window):
                                       30,
                                       width=SCREEN_WIDTH,
                                       align='center')
+        layers = {
+            "spikes": {"use_spartial_hash":False},
+            "walls": {"use_spartial_hash":True},
+            "background": {"use_spartial_hash":False},
+            "background_far": {"use_spartial_hash":False}
+        }
+        self.tile_map = arcade.load_tilemap(
+            "D:/share/prj/безымянный.tmx",
+            layer_options=layers
+            )
+        self.scene = arcade.Scene.from_tilemap(self.tile_map)
+
+
         
-        self.ground_texture = arcade.load_texture(":resources:images/tiles/grassMid.png")
-
-        self.ground_sprite_list = arcade.SpriteList()
-        k = 0
-        while k <= 39: 
-            ground_sprite = arcade.Sprite(self.ground_texture, scale=0.5)
-            ground_sprite.center_x = 32+32*k
-            ground_sprite.center_y = 32
-            self.ground_sprite_list.append(ground_sprite)
-            k = k + 2
-
-        coordinate_list = [[256, 64+64/2], [512, 64+(64/2)*4] ,[768, 64+(64/2)*6]]
-
-        for coordinate in coordinate_list:
-            wall = arcade.Sprite(
-                ":resources:images/tiles/boxCrate_double.png",
-                scale=0.5)
-            wall.position = coordinate
-            self.ground_sprite_list.append(wall)
 
         self.player_texture = arcade.load_texture(":resources:images/alien/alienBlue_front.png")
         self.player_sprite = arcade.Sprite(self.player_texture,scale=0.5)
         self.player_sprite.position = [100,200]
-        self.player_sprite_lst = arcade.SpriteList()
-        self.player_sprite_lst.append(self.player_sprite)
+        """self.player_sprite_lst = arcade.SpriteList()
+        self.player_sprite_lst.append(self.player_sprite)"""
+        self.scene.add_sprite("Player",self.player_sprite)
+
         self.physics_engine = arcade.PhysicsEnginePlatformer(
                                                             self.player_sprite, 
-                                                            walls=self.ground_sprite_list, 
+                                                            walls=self.scene['walls'], 
                                                             gravity_constant=1
                                                             )
 
@@ -95,8 +91,8 @@ class MyGame(arcade.Window):
             self.exit_text.draw()
             self.start_text.draw()
         elif self.state == 1:
-            self.ground_sprite_list.draw()
-            self.player_sprite_lst.draw()
+            #self.player_sprite_lst.draw()
+            self.scene.draw()
 
 
 game = MyGame()
