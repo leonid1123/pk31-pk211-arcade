@@ -1,5 +1,5 @@
 import arcade
-
+#https://opengameart.org
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 800
 
@@ -16,8 +16,15 @@ class MyGame(arcade.Window):
         self.player_sprite = None
         self.player_sprite_lst = None
         self.physics_engine = None
+        self.player_HP = None
+
+        self.heart_texture = None
+        self.heart_sprite_lst = None
+        self.heart_sprite = None
+
 
     def setup(self):
+        self.player_HP = 3
         arcade.set_background_color(arcade.color.BATTLESHIP_GREY)
         self.start_text = arcade.Text("Для начала \nнажмите ENTER",0,SCREEN_HEIGHT/3,
                                       arcade.color.AERO_BLUE,
@@ -52,6 +59,12 @@ class MyGame(arcade.Window):
 
 
         
+        self.heart_texture = arcade.load_texture("tiled/heart.png")
+        self.heart_sprite_lst = arcade.SpriteList()
+        for i in range(0,3):
+            self.heart_sprite = arcade.Sprite(self.heart_texture, scale=1.5)
+            self.heart_sprite.position = [40+i*30,750]
+            self.heart_sprite_lst.append(self.heart_sprite)
 
         self.player_texture = arcade.load_texture(":resources:images/alien/alienBlue_front.png")
         self.player_sprite = arcade.Sprite(self.player_texture,scale=0.2)
@@ -59,7 +72,7 @@ class MyGame(arcade.Window):
         """self.player_sprite_lst = arcade.SpriteList()
         self.player_sprite_lst.append(self.player_sprite)"""
         self.scene.add_sprite("Player",self.player_sprite)
-
+        self.scene.add_sprite_list("Hearts",sprite_list=self.heart_sprite_lst)#тут
         self.physics_engine = arcade.PhysicsEnginePlatformer(
                                                             self.player_sprite, 
                                                             walls=self.scene['walls'], 
