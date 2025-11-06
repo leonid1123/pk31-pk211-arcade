@@ -18,31 +18,27 @@ class MyApp(arcade.Window):
         self.ground_Sprite = None
         self.keys_lst = None
 
-        
-        
-
     def setup(self):
-        texture1 = arcade.load_texture(":resources:images/tiles/grassMid.png")
-        texture2 = arcade.load_texture(":resources:images/tiles/rock.png")
+        #texture1 = arcade.load_texture(":resources:images/tiles/grassMid.png")
+        #texture2 = arcade.load_texture(":resources:images/tiles/rock.png")
         texture3 = arcade.load_texture(":resources:images/alien/alienBlue_front.png")
-        texture4 = arcade.load_texture(":resources:images/items/keyBlue.png")
+        #texture4 = arcade.load_texture(":resources:images/items/keyBlue.png")
         
-
         self.player_sprite = arcade.Sprite(texture3, scale=0.5)
         self.player_sprite.position = [32,32+84]
-        self.player_lst = arcade.SpriteList()
-        self.player_lst.append(self.player_sprite)
+        #self.player_lst = arcade.SpriteList()
+        #self.player_lst.append(self.player_sprite)
 
-        self.ground_list = arcade.SpriteList()
-        k=0
-        while k <= 38:
-            self.ground_Sprite = arcade.Sprite(texture1, scale=0.5)
-            self.ground_Sprite.center_x = 32+32*k
-            self.ground_Sprite.center_y = 32
-            self.ground_list.append(self.ground_Sprite)
-            k = k + 2
+        #self.ground_list = arcade.SpriteList()
+        #k=0
+        #while k <= 38:
+        #    self.ground_Sprite = arcade.Sprite(texture1, scale=0.5)
+        #    self.ground_Sprite.center_x = 32+32*k
+        #    self.ground_Sprite.center_y = 32
+        #    self.ground_list.append(self.ground_Sprite)
+        #    k = k + 2
 
-        coordinate_list = [[256, 96], [512, 96+64] ,[768, 96+2*64]]
+        """coordinate_list = [[256, 96], [512, 96+64] ,[768, 96+2*64]]
         for coordinate in coordinate_list:
             wall = arcade.Sprite(texture2, scale=0.5)
             wall.position = coordinate
@@ -53,8 +49,8 @@ class MyApp(arcade.Window):
         for coords in keys_coordinates:
             key = arcade.Sprite(texture4, scale=0.5)
             key.position = coords
-            self.keys_lst.append(key)
-            
+            self.keys_lst.append(key)"""
+
         self.state = 0
         self.key_counter = 0
         arcade.set_background_color(arcade.color.ELECTRIC_BLUE)

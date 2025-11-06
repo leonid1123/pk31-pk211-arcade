@@ -5,7 +5,7 @@ SCREEN_HEIGHT = 800
 
 class MyGame(arcade.Window):
     def __init__(self):
-        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, title="Платформер группы ПК-41")
+        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, title="Платформер группы ПК-41", center_window=True)
         self.state = 0
         self.start_text = None
         self.exit_text = None
@@ -19,10 +19,18 @@ class MyGame(arcade.Window):
 
     def setup(self):
         arcade.set_background_color(arcade.color.BATTLESHIP_GREY)
-        self.start_text = arcade.Text("Для начала нажмите ENTER",0,SCREEN_HEIGHT/3,
-                                      arcade.color.AERO_BLUE,30,width=SCREEN_WIDTH,align='left')
-        self.exit_text = arcade.Text("Для выхода нажмите ESC",0,SCREEN_HEIGHT/3,
-                                      arcade.color.AERO_BLUE,30,width=SCREEN_WIDTH,align='right')
+        self.start_text = arcade.Text("Для начала \nнажмите ENTER",0,SCREEN_HEIGHT/3,
+                                      arcade.color.AERO_BLUE,
+                                      30,
+                                      width=SCREEN_WIDTH,
+                                      align='left',
+                                      multiline=True)
+        self.exit_text = arcade.Text("Для выхода \nнажмите ESC",0,SCREEN_HEIGHT/3,
+                                      arcade.color.AERO_BLUE,
+                                      30,
+                                      width=SCREEN_WIDTH,
+                                      align='right',
+                                      multiline=True)
         self.title_text = arcade.Text("Платформер!",
                                       10,
                                       SCREEN_HEIGHT*2/3,
@@ -37,7 +45,7 @@ class MyGame(arcade.Window):
             "background_far": {"use_spartial_hash":False}
         }
         self.tile_map = arcade.load_tilemap(
-            "D:/share/prj/безымянный.tmx",
+            "tiled/безымянный.tmx",
             layer_options=layers
             )
         self.scene = arcade.Scene.from_tilemap(self.tile_map)
@@ -46,7 +54,7 @@ class MyGame(arcade.Window):
         
 
         self.player_texture = arcade.load_texture(":resources:images/alien/alienBlue_front.png")
-        self.player_sprite = arcade.Sprite(self.player_texture,scale=0.5)
+        self.player_sprite = arcade.Sprite(self.player_texture,scale=0.2)
         self.player_sprite.position = [100,200]
         """self.player_sprite_lst = arcade.SpriteList()
         self.player_sprite_lst.append(self.player_sprite)"""

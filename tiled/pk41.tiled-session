@@ -1,0 +1,49 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "безымянный.tmx",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "Assets.tsx": {
+            "scaleInDock": 1.5,
+            "scaleInEditor": 1
+        },
+        "player.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 1
+        },
+        "безымянный.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 290.99999999999994,
+                "y": 477.66666666666663
+            }
+        }
+    },
+    "last.imagePath": "C:/Users/Leo/Pictures/Sprites/Legacy-Dungeon_V0.2_vacaroxa/Final/Assets",
+    "map.height": 50,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 50,
+    "openFiles": [
+        "безымянный.tmx",
+        "Assets.tsx",
+        "player.tsx"
+    ],
+    "project": "pk41.tiled-project",
+    "recentFiles": [
+        "player.tsx",
+        "Assets.tsx",
+        "безымянный.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}
