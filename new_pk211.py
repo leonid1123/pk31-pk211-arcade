@@ -133,9 +133,7 @@ class MyApp(arcade.Window):
             self.start_text.draw()
             self.exit_text.draw()
         elif self.state == 1:
-            self.ground_list.draw()
-            self.player_lst.draw()
-            self.keys_lst.draw()
+            
             self.key_counter_text.draw()
 
 
