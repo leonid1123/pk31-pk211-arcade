@@ -10,6 +10,7 @@ class MyGame(arcade.Window):
         self.start_text = None
         self.exit_text = None
         self.title_text = None
+        self.coins_text = None
         self.ground_texture = None
         self.ground_sprite_list = None
         self.player_texture = None
@@ -22,9 +23,12 @@ class MyGame(arcade.Window):
         self.heart_sprite_lst = None
         self.heart_sprite = None
 
+        self.coins = None
+
 
     def setup(self):
         self.player_HP = 3
+        self.coins = 0
         arcade.set_background_color(arcade.color.BATTLESHIP_GREY)
         self.start_text = arcade.Text("Для начала \nнажмите ENTER",0,SCREEN_HEIGHT/3,
                                       arcade.color.AERO_BLUE,
@@ -45,7 +49,13 @@ class MyGame(arcade.Window):
                                       30,
                                       width=SCREEN_WIDTH,
                                       align='center')
+        self.coins_text = arcade.Text("Монеток: ",
+                                      20,
+                                      780,
+                                      arcade.color.GOLD_FUSION,
+                                      20)
         layers = {
+            'coins': {"use_spartial_hash":False},
             "spikes": {"use_spartial_hash":False},
             "walls": {"use_spartial_hash":True},
             "background": {"use_spartial_hash":False},
@@ -104,6 +114,21 @@ class MyGame(arcade.Window):
 
     def on_update(self, delta_time):
         self.physics_engine.update()
+        pikes_collision = arcade.check_for_collision_with_list(self.player_sprite
+                                                               ,self.scene['spikes'])
+        if pikes_collision:
+            self.player_HP -= 1
+            self.player_sprite.change_y = 10
+            self.heart_sprite.remove_from_sprite_lists()
+            if self.player_HP <=0:
+                self.setup()
+
+        coins_collision = arcade.check_for_collision_with_list(self.player_sprite,
+                                                               self.scene['coins'])
+        for coin in coins_collision:
+            self.coins += 1
+            self.coins_text.text = f"Монеток: {self.coins}"
+            coin.remove_from_sprite_lists()
 
     def on_draw(self):
         self.clear()
@@ -114,8 +139,22 @@ class MyGame(arcade.Window):
         elif self.state == 1:
             #self.player_sprite_lst.draw()
             self.scene.draw()
+            self.coins_text.draw()
 
 
 game = MyGame()
 game.setup()
 arcade.run()
+
+'''
+На автомат по двум предметам, всего два студента:
+Разработать игру в Arcade по следующим требованиям:
+1. Персонаж: ходит, прыгает, есть 3 жизни. Есть анимация хотьбы и прыжка.
+2. Уровень: 200х100 спрайтов, спрайты 16х16 или 32х32. Платформы минимум на 4 уровня вверх.
+            есть два типа подбираемых предметов. Есть места со сложным доступом.
+            есть "опасные места", например пики или лужи с кислотой.
+3. Камера: использовать камеру для перемещения за персонажем.
+4. Стартовый экран: элементарный с началом игры и выходом из игры
+5. Экран окончания игры: по окончанию игры выводить экран с количеством собранных
+                         элементов.
+'''

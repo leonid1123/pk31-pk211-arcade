@@ -1,0 +1,58 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "D:/repos/arcade/tiled/безымянный.tmx",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "Assets.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 1
+        },
+        "D:/repos/arcade/tiled/Assets.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/repos/arcade/tiled/player.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/repos/arcade/tiled/безымянный.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 296.3333333333333,
+                "y": 535
+            }
+        },
+        "pk211_level.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 127.66666666666666,
+                "y": -0.3333333333333144
+            }
+        }
+    },
+    "last.imagePath": "D:/share",
+    "map.fixedSize": false,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "openFiles": [
+        "pk211_level.tmx",
+        "Assets.tsx",
+        "D:/repos/arcade/tiled/безымянный.tmx"
+    ],
+    "project": "pk211.tiled-project",
+    "recentFiles": [
+        "pk211_level.tmx",
+        "Assets.tsx",
+        "D:/repos/arcade/tiled/безымянный.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}

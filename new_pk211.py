@@ -97,7 +97,7 @@ class MyApp(arcade.Window):
                 self.player_sprite.change_x = -5
             elif key == arcade.key.RIGHT or key == arcade.key.D:
                 self.player_sprite.change_x = 5
-            if key == arcade.key.TAB:#пауза, а должен быть перезапуск
+            if key == arcade.key.TAB:
                 self.state = 0
                 self.setup()
 
