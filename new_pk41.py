@@ -79,8 +79,7 @@ class MyGame(arcade.Window):
         self.player_texture = arcade.load_texture(":resources:images/alien/alienBlue_front.png")
         self.player_sprite = arcade.Sprite(self.player_texture,scale=0.2)
         self.player_sprite.position = [100,200]
-        """self.player_sprite_lst = arcade.SpriteList()
-        self.player_sprite_lst.append(self.player_sprite)"""
+        
         self.scene.add_sprite("Player",self.player_sprite)
         self.scene.add_sprite_list("Hearts",sprite_list=self.heart_sprite_lst)#тут
         self.physics_engine = arcade.PhysicsEnginePlatformer(
